@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniversalCloud Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/universalcloud-logo.png" alt="UniversalCloud Logo" height="50" />
+    <h1>UniversalCloud Monitor</h1>
+    <p>Real-time status updates for your critical services</p>
+  </header>
+
+  <main>
+    <section class="status">
+      <h2>Overall System Status: <span id="status-text">Checking...</span></h2>
+      <p id="uptime">Uptime: Fetching...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 UniversalCloud. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Example simulated fetch - replace with your real API endpoint or iframe method
+    async function fetchStatus() {
+      try {
+        // Simulate API response (replace with UptimeRobot API if available)
+        const response = await fetch("https://api.uptimerobot.com/v2/getMonitors", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            api_key: "YOUR_API_KEY",
+            format: "json"
+          })
+        });
+
+        const data = await response.json();
+        const monitor = data.monitors[0];
+        const status = monitor.status === 2 ? "Operational" : "Down";
+        const color = monitor.status === 2 ? "green" : "red";
+        const uptime = monitor.all_time_uptime_ratio + "%";
+
+        document.getElementById("status-text").textContent = status;
+        document.getElementById("status-text").style.color = color;
+        document.getElementById("uptime").textContent = "Uptime: " + uptime;
+      } catch (err) {
+        document.getElementById("status-text").textContent = "Error Fetching";
+        document.getElementById("status-text").style.color = "gray";
+        document.getElementById("uptime").textContent = "Uptime: Unknown";
+      }
+    }
+
+    fetchStatus();
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #1e1e2f;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #4F46E5, #6366F1);
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.status {
+  padding: 2rem 1rem;
+}
+
+.online {
+  color: #10b981;
+  font-weight: bold;
+}
+
+footer {
+  background: #e5e7eb;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
